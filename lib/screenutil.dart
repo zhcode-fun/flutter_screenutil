@@ -43,7 +43,7 @@ class ScreenUtil {
     _instance
       ..uiSize = designSize
       ..allowFontScaling = allowFontScaling;
-    MediaQueryData mediaQuery = MediaQuery.of(context);
+    MediaQueryData mediaQuery = _MyMediaQuery.of(context);
     _pixelRatio = mediaQuery.devicePixelRatio;
     _screenWidth = mediaQuery.size.width;
     _screenHeight = mediaQuery.size.height;
@@ -123,3 +123,11 @@ class ScreenUtil {
               ? (fontSize * scaleText)
               : ((fontSize * scaleText) / _textScaleFactor));
 }
+
+class _MyMediaQuery extends MediaQuery {
+  @override
+  bool updateShouldNotify(covariant MediaQuery oldWidget) {
+    return false;
+  }
+}
+
